@@ -28616,22 +28616,25 @@ var Home = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "Home" },
         _react2.default.createElement(
           "h1",
-          null,
+          { className: "Home__title" },
           "I am home component!"
         ),
         _react2.default.createElement(
           "p",
-          null,
+          { className: "Home__text" },
           "I am rendered on server"
         ),
         _react2.default.createElement(
           "button",
-          { onClick: function onClick() {
+          {
+            className: "Home__action",
+            onClick: function onClick() {
               return console.log("Hi, there!");
-            } },
+            }
+          },
           "Press me!"
         )
       );

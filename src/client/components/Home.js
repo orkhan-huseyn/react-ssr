@@ -3,10 +3,15 @@ import React from "react";
 class Home extends React.Component {
   render() {
     return (
-      <div>
-        <h1>I am home component!</h1>
-        <p>I am rendered on server</p>
-        <button onClick={() => console.log("Hi, there!")}>Press me!</button>
+      <div className="Home">
+        <h1 className="Home__title">I am home component!</h1>
+        <p className="Home__text">I am rendered on server</p>
+        <button
+          className="Home__action"
+          onClick={() => console.log("Hi, there!")}
+        >
+          Press me!
+        </button>
       </div>
     );
   }
