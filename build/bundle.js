@@ -80,15 +80,9 @@ var _express = __webpack_require__(2);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _react = __webpack_require__(0);
+var _renderer = __webpack_require__(5);
 
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(3);
-
-var _Home = __webpack_require__(4);
-
-var _Home2 = _interopRequireDefault(_Home);
+var _renderer2 = _interopRequireDefault(_renderer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -96,10 +90,8 @@ var app = (0, _express2.default)();
 
 app.use(_express2.default.static("public"));
 
-app.get("/", function (req, res) {
-  var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
-  var html = "\n    <!DOCTYPE html>\n    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n      <title>React SSR</title>\n    </head>\n    <body>\n      <div id=\"root\">" + content + "</div>\n      <script src=\"bundle.js\" defer></script>\n    </body>\n    </html>\n  ";
-  res.send(html);
+app.get("*", function (req, res) {
+  res.send((0, _renderer2.default)(req));
 });
 
 app.listen(3000, function () {
@@ -186,6 +178,78 @@ var Home = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Home;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(6);
+
+var _server = __webpack_require__(3);
+
+var _Routes = __webpack_require__(7);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (req) {
+  var content = (0, _server.renderToString)(_react2.default.createElement(
+    _reactRouterDom.StaticRouter,
+    { location: req.url, context: {} },
+    _react2.default.createElement(_Routes2.default, null)
+  ));
+
+  return "\n    <!DOCTYPE html>\n    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n      <title>React SSR</title>\n    </head>\n    <body>\n      <div id=\"root\">" + content + "</div>\n      <script src=\"bundle.js\" defer></script>\n    </body>\n    </html>\n  ";
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(6);
+
+var _Home = __webpack_require__(4);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    _reactRouterDom.Switch,
+    null,
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Home2.default })
+  );
+};
 
 /***/ })
 /******/ ]);
