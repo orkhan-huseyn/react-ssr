@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
+import { renderRoutes } from "react-router-config";
 
 import Routes from "../client/Routes";
 
@@ -9,7 +10,7 @@ export default (req, store) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
-        <Routes />
+        {renderRoutes(Routes)}
       </StaticRouter>
     </Provider>
   );

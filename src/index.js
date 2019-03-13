@@ -1,7 +1,10 @@
 import "babel-polyfill";
 import express from "express";
+import { matchRoutes } from "react-router-config";
 import renderer from "./helpers/renderer";
 import createStore from "./helpers/createStore";
+
+import Routes from "./client/Routes";
 
 const app = express();
 
@@ -10,14 +13,15 @@ app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = createStore();
 
-  // some logic to initialize
-  // load data to store
+  const promises = matchRoutes(Routes, req.path).map(function({ route }) {
+    return route.loadData ? route.loadData(store) : null;
+  });
 
-  res.send(renderer(req, store));
+  Promise.all(promises).then(function() {
+    res.send(renderer(req, store));
+  });
 });
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
-
-//http://react-ssr-api.herokuapp.com/
