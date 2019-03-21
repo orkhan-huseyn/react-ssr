@@ -38734,26 +38734,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Home = __webpack_require__(465);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _Home2 = _interopRequireDefault(_Home);
+var _HomePage = __webpack_require__(465);
 
-var _UsersList = __webpack_require__(466);
+var _HomePage2 = _interopRequireDefault(_HomePage);
 
-var _UsersList2 = _interopRequireDefault(_UsersList);
+var _UsersListPage = __webpack_require__(466);
+
+var _UsersListPage2 = _interopRequireDefault(_UsersListPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = [{
+exports.default = [_extends({
   path: "/",
-  component: _Home2.default,
   exact: true
-}, {
-  loadData: _UsersList.loadData,
+}, _HomePage2.default), _extends({
   path: "/users",
-  component: _UsersList2.default,
   exact: true
-}];
+}, _UsersListPage2.default)];
 
 /***/ }),
 /* 465 */
@@ -38780,16 +38779,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Home = function (_React$Component) {
-  _inherits(Home, _React$Component);
+var HomePage = function (_React$Component) {
+  _inherits(HomePage, _React$Component);
 
-  function Home() {
-    _classCallCheck(this, Home);
+  function HomePage() {
+    _classCallCheck(this, HomePage);
 
-    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
   }
 
-  _createClass(Home, [{
+  _createClass(HomePage, [{
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -38819,10 +38818,12 @@ var Home = function (_React$Component) {
     }
   }]);
 
-  return Home;
+  return HomePage;
 }(_react2.default.Component);
 
-exports.default = Home;
+exports.default = {
+  component: HomePage
+};
 
 /***/ }),
 /* 466 */
@@ -38913,7 +38914,10 @@ function loadData(store) {
   return store.dispatch((0, _actions.fetchUsers)());
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList);
+exports.default = {
+  component: (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList),
+  loadData: loadData
+};
 
 /***/ }),
 /* 467 */
