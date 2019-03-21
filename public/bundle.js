@@ -7932,7 +7932,7 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios2.default.get("http://react-ssr-api.herokuapp.com/users ");
+              return _axios2.default.get("http://react-ssr-api.herokuapp.com/users/xss");
 
             case 2:
               res = _context.sent;
@@ -42570,8 +42570,8 @@ var UsersList = function (_React$Component) {
   }
 
   _createClass(UsersList, [{
-    key: "componenDidMount",
-    value: function componenDidMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       this.props.fetchUsers();
     }
   }, {
