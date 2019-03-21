@@ -8605,7 +8605,7 @@ var _reducers2 = _interopRequireDefault(_reducers);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Startup code for the client side javasctip
-var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_STATE || {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 _reactDom2.default.hydrate(_react2.default.createElement(
   _reactRedux.Provider,
@@ -38865,6 +38865,11 @@ var UsersList = function (_React$Component) {
   }
 
   _createClass(UsersList, [{
+    key: "componenDidMount",
+    value: function componenDidMount() {
+      this.props.fetchUsers();
+    }
+  }, {
     key: "renderUsers",
     value: function renderUsers() {
       return this.props.users.map(function (user) {

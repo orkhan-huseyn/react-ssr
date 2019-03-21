@@ -11,7 +11,11 @@ import thunk from "redux-thunk";
 import Routes from "./Routes";
 import rootReducer from "./reducers";
 
-const store = createStore(rootReducer, {}, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  window.INITIAL_STATE || {},
+  applyMiddleware(thunk)
+);
 
 ReactDOM.hydrate(
   <Provider store={store}>
