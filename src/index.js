@@ -9,6 +9,8 @@ import Routes from "./client/Routes";
 
 const app = express();
 
+// redirect client request which goes to /api
+// to real api url
 app.use("/api", proxy("http://react-ssr-api/herokuapp.com", {
   proxyReqOptDecorator(opts) {
     opts.header["x-forwarded-host"] = "localhost:3000";
