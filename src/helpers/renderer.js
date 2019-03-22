@@ -7,7 +7,7 @@ import serialize from "serialize-javascript";
 
 import Routes from "../client/Routes";
 
-export default (req, store) => {
+export default function(req, store) {
   // get rendered react component
   // as pure string with ReactDOM.server
   // this includes html with given redux state
@@ -39,4 +39,4 @@ export default (req, store) => {
     </body>
     </html>
   `;
-};
+}

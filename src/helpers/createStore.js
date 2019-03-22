@@ -4,7 +4,7 @@ import axios from "axios";
 
 import rootReducer from "../client/reducers";
 
-export default (req) => {
+export default function(req) {
   const axiosInstance = axios.create({
     baseURL: "http://react-ssr-api.herokuapp.com",
     headers: { cookie: req.get("cookie") || "" }
@@ -15,4 +15,4 @@ export default (req) => {
     applyMiddleware(thunk.withExtraArgument(axiosInstance))
   );
   return store;
-};
+}

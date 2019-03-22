@@ -25,7 +25,7 @@ app.use(express.static("public"));
 
 // redirect all routes to index.html
 // for react router to deremine where to go
-app.get("*", (req, res) => {
+app.get("*", function(req, res) {
   // get store
   const store = createStore(req);
   // if router matches any routes, return loadData function
@@ -42,6 +42,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(3000, function() {
   console.log("Listening on port 3000");
 });

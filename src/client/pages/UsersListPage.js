@@ -21,11 +21,11 @@ class UsersList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state) {
   return {
     users: state.users
   };
-};
+}
 
 export default {
   component: connect(
