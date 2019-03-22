@@ -1,4 +1,3 @@
-
 export const FETCH_USERS = "FETCH_USERS";
 
 export function fetchUsers() {
@@ -9,7 +8,7 @@ export function fetchUsers() {
       payload: res
     });
   };
-};
+}
 
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 
@@ -20,5 +19,5 @@ export function fetchCurrentUser() {
       type: FETCH_CURRENT_USER,
       payload: res
     });
-  }
+  };
 }

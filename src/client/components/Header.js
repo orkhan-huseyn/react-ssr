@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = ({ auth }) => {
-  console.log(auth);
-
-  const authButton  = auth ? (
+  const authButton = auth ? (
     <a href="/api/logout">Logout</a>
   ) : (
     <a href="/api/auth/google">Login</a>
@@ -21,7 +19,7 @@ const Header = ({ auth }) => {
       </div>
     </header>
   );
-}
+};
 
 function mapStateToProps({ auth }) {
   return { auth };
