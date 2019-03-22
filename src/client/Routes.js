@@ -1,15 +1,21 @@
+import App from "./App";
 import HomePage from "./pages/HomePage";
 import UsersListPage from "./pages/UsersListPage";
 
 export default [
   {
-    path: "/",
-    exact: true,
-    ...HomePage
-  },
-  {
-    path: "/users",
-    exact: true,
-    ...UsersListPage
+    ...App,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        ...HomePage
+      },
+      {
+        path: "/users",
+        exact: true,
+        ...UsersListPage
+      }
+    ]
   }
 ];

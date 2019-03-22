@@ -42441,6 +42441,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _App = __webpack_require__(471);
+
+var _App2 = _interopRequireDefault(_App);
+
 var _HomePage = __webpack_require__(448);
 
 var _HomePage2 = _interopRequireDefault(_HomePage);
@@ -42451,13 +42455,15 @@ var _UsersListPage2 = _interopRequireDefault(_UsersListPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = [_extends({
-  path: "/",
-  exact: true
-}, _HomePage2.default), _extends({
-  path: "/users",
-  exact: true
-}, _UsersListPage2.default)];
+exports.default = [_extends({}, _App2.default, {
+  routes: [_extends({
+    path: "/",
+    exact: true
+  }, _HomePage2.default), _extends({
+    path: "/users",
+    exact: true
+  }, _UsersListPage2.default)]
+})];
 
 /***/ }),
 /* 448 */
@@ -42511,13 +42517,8 @@ var HomePage = function (_React$Component) {
         ),
         _react2.default.createElement(
           "button",
-          {
-            className: "Home__action",
-            onClick: function onClick() {
-              return console.log("Hi, there!");
-            }
-          },
-          "Press me!"
+          { className: "Home__action" },
+          "See users"
         )
       );
     }
@@ -43545,6 +43546,81 @@ exports.default = function () {
       return state;
   }
 };
+
+/***/ }),
+/* 471 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Header = __webpack_require__(472);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _reactRouterConfig = __webpack_require__(414);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App(_ref) {
+  var route = _ref.route;
+  return _react2.default.createElement(
+    "div",
+    { "class": "App" },
+    _react2.default.createElement(_Header2.default, null),
+    (0, _reactRouterConfig.renderRoutes)(route.routes)
+  );
+};
+
+exports.default = {
+  component: App
+};
+
+/***/ }),
+/* 472 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(386);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header() {
+  return _react2.default.createElement(
+    "header",
+    null,
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: "/" },
+      "React SSR"
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: "/users" },
+      "Users"
+    )
+  );
+};
+
+exports.default = Header;
 
 /***/ })
 /******/ ]);
