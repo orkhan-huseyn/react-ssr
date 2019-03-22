@@ -11,9 +11,9 @@ const app = express();
 
 // redirect client request which goes to /api
 // to real api url
-app.use("/api", proxy("http://react-ssr-api/herokuapp.com", {
+app.use("/api", proxy("http://react-ssr-api.herokuapp.com", {
   proxyReqOptDecorator(opts) {
-    opts.header["x-forwarded-host"] = "localhost:3000";
+    opts.headers["x-forwarded-host"] = "localhost:3000";
     return opts;
   }
 }));
@@ -24,7 +24,7 @@ app.use(express.static("public"));
 // for react router to deremine where to go
 app.get("*", (req, res) => {
   // get store
-  const store = createStore();
+  const store = createStore(req);
   // if router matches any routes, return loadData function
   // which dispatches action to store
   const promises = matchRoutes(Routes, req.path).map(function({ route }) {
