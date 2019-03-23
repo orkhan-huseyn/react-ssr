@@ -7,13 +7,13 @@ import serialize from "serialize-javascript";
 
 import Routes from "../client/Routes";
 
-export default function(req, store) {
+export default function(req, store, context) {
   // get rendered react component
   // as pure string with ReactDOM.server
   // this includes html with given redux state
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.url} context={{}}>
+      <StaticRouter location={req.url} context={context}>
         {renderRoutes(Routes)}
       </StaticRouter>
     </Provider>
@@ -23,7 +23,7 @@ export default function(req, store) {
   // react rendered content in it
   // include obtained redux state into html
   // for state rehydration
-  return `
+  return ` 
     <!DOCTYPE html>
     <html lang="en">
     <head>
