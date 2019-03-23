@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
 import { renderRoutes } from "react-router-config";
+import { Helmet } from "react-helmet";
 import serialize from "serialize-javascript";
 
 import Routes from "../client/Routes";
@@ -19,6 +20,8 @@ export default function(req, store, context) {
     </Provider>
   );
 
+  const helmet = Helmet.renderStatic();
+
   // return pure html with
   // react rendered content in it
   // include obtained redux state into html
@@ -30,6 +33,8 @@ export default function(req, store, context) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      ${helmet.title.toString()}
+      ${helmet.meta.toString()}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <title>React SSR</title>
     </head>

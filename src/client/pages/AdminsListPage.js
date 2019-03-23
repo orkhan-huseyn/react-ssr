@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchAdmins } from "../actions";
+import { Helmet } from "react-helmet";
 import requireAuth from "../components/hocs/requireAuth";
 
 class AdminsListPage extends React.Component {
@@ -19,6 +20,10 @@ class AdminsListPage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>Admins Page</title>
+          <meta property="og:title" content="Home Page" />
+        </Helmet>
         <h2>Protected list of admins</h2>
         <ul className="collection">{this.renderAdmins()}</ul>
       </div>
