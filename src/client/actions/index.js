@@ -10,6 +10,18 @@ export function fetchUsers() {
   };
 }
 
+export const FETCH_ADMINS = "FETCH_ADMINS";
+
+export function fetchAdmins() {
+  return async function(dispatch, getState, api) {
+    const res = await api.get("/admins");
+    dispatch({
+      type: FETCH_ADMINS,
+      payload: res
+    });
+  };
+}
+
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER";
 
 export function fetchCurrentUser() {
