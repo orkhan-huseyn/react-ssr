@@ -43730,6 +43730,10 @@ var _reactRedux = __webpack_require__(78);
 
 var _actions = __webpack_require__(55);
 
+var _requireAuth = __webpack_require__(477);
+
+var _requireAuth2 = _interopRequireDefault(_requireAuth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43793,7 +43797,7 @@ function mapStateToProps(_ref) {
 }
 
 exports.default = {
-  component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })(AdminsListPage),
+  component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })((0, _requireAuth2.default)(AdminsListPage)),
   loadData: function loadData(_ref2) {
     var dispatch = _ref2.dispatch;
 
@@ -43942,6 +43946,77 @@ exports.default = function () {
 };
 
 var _actions = __webpack_require__(55);
+
+/***/ }),
+/* 477 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+exports.default = requireAuth;
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(78);
+
+var _reactRouterDom = __webpack_require__(154);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function requireAuth(WrappedComponent) {
+  var RequireAuth = function (_React$Component) {
+    _inherits(RequireAuth, _React$Component);
+
+    function RequireAuth() {
+      _classCallCheck(this, RequireAuth);
+
+      return _possibleConstructorReturn(this, (RequireAuth.__proto__ || Object.getPrototypeOf(RequireAuth)).apply(this, arguments));
+    }
+
+    _createClass(RequireAuth, [{
+      key: "render",
+      value: function render() {
+        switch (this.props.auth) {
+          case false:
+            return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/" });
+          case null:
+            return _react2.default.createElement(
+              "h1",
+              null,
+              "Loading..."
+            );
+          default:
+            return _react2.default.createElement(WrappedComponent, this.props);
+        }
+      }
+    }]);
+
+    return RequireAuth;
+  }(_react2.default.Component);
+
+  function mapStateToProps(_ref) {
+    var auth = _ref.auth;
+
+    return { auth: auth };
+  }
+
+  return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
+}
 
 /***/ })
 /******/ ]);
